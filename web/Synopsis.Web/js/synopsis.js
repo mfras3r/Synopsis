@@ -1,10 +1,24 @@
 ﻿angular.module("synopsis", ["ui.bootstrap"])
+	.filter('thumbEllipses', function() {
+		return function(input, scope) {
+			if (input) {
+				return input.substring(0, 37) + '...';
+			}
+		}
+	})
 	.controller("SynopsisController", [
 		"$scope", "$http", "$log", "$timeout",
 		function($scope, $http, $log, $timeout) {
 			$scope.url = "";
 			$scope.alerts = [];
 			$scope.curAlertId = 0;
+
+			$scope.isImagesEmpty = function() {
+				if (!$scope.images || $scope.images.length === 0) {
+					return true;
+				}
+				return false;
+			}
 
 			$scope.closeAlert = function(index) {
 				if (0 > index || index >= $scope.alerts.length) {
