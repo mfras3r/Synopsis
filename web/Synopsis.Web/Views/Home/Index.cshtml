@@ -23,19 +23,18 @@
 						<img src="/img/spinner.gif" alt="Loading..."/>
 					</span>
 					<div class="input-group-btn">
-						<button type="submit" class="btn btn-default" aria-label="Search" ng-click="request(urlForm.$valid)">
+						<button type="submit" class="btn btn-default" aria-label="Search">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
 					</div>
 				</div>
 			</form>
 			<div class="alerts">
-				<div class="bg-danger text-center text-danger" ng-show="error">
-					<span class="glyphicon glyphicon-alert" aria-hidden="true"></span> {{errorMessage}}
-				</div>
-				<div class="bg-info text-center" ng-show="loading">
-					<img src="/img/spinner.gif" alt="Loading..." /> Loading... please wait.
-				</div>
+				<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" class="text-center">
+					<span class="glyphicon glyphicon-alert" aria-hidden="true" ng-show="{{alert.type == 'danger'}}"></span>
+					<img src="/img/spinner.gif" alt="Loading..." ng-show="{{alert.loading}}" />
+					{{alert.msg}}
+				</alert>
 			</div>
 		</div>
 	</section>
