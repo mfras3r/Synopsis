@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomMVC\JsonDataContractActionResult.cs" />
+    <Compile Include="CustomMVC\JsonDataContractErrorActionResult.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
