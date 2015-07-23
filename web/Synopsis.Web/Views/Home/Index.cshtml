@@ -41,13 +41,13 @@
 
 	<section class="well results" ng-show="showResults">
 		<div class="row">
-			<div class="top-words col-xs-6 col-sm-3 thumbnail pull-right text-center">
+			<div class="top-words col-xs-12 col-sm-6 col-md-3 thumbnail pull-right text-center">
 				<h3 ng-show="isWordsEmpty()">No words found...</h3>
 
 				<div ng-hide="isWordsEmpty()">
 					<h3 class="hidden-xs hidden-sm">Top {{words.length}} Words</h3>
 					<h3 class="visible-xs visible-sm" aria-hidden="True">Top {{words.length}}</h3>
-					<table>
+					<table class="table-responsive">
 						<tr>
 							<td class="col-xs-4"><b>Rank</b></td>
 							<td class="col-xs-4"><b>Word</b></td>
@@ -71,7 +71,7 @@
 					<a href="{{imgUrl}}" target="_blanks">{{imgUrl|thumbEllipses}}</a>
 				</div>
 			</div>
-			<div class="col-xs-6 col-sm-9 thumbnail text-center" ng-show="isImagesEmpty()">
+			<div class="col-xs-12 col-sm-6 col-md-9 thumbnail text-center" ng-show="isImagesEmpty()">
 				<h2>No images found...</h2>
 			</div>
 		</div>
