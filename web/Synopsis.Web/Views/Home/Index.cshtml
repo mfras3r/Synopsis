@@ -16,9 +16,9 @@
 	<section class="url-form row">
 		<div class="col-xs-12">
 			<form name="urlForm" ng-submit="request(urlForm.$valid)">
-				<label for="url">Url to Retrieve:</label>
+				<label for="url">Synopsis URL:</label>
 				<div class="input-group">
-					<input id="url" type="text" class="form-control" placeholder="Type a URL to get a synopsis of" ng-model="url" required />
+					<input id="url" type="text" class="form-control" placeholder="URL of the web page to summarize" ng-model="url" required />
 					<span class="input-group-addon" ng-show="loading">
 						<img src="/img/spinner.gif" alt="Loading..."/>
 					</span>
