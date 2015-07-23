@@ -1,11 +1,11 @@
 ﻿angular.module("synopsis", ["ui.bootstrap"])
 	.controller("SynopsisController", [
-		"$scope", "$http", "$log", '$timeout',
-		function ($scope, $http, $log, $timeout) {
+		"$scope", "$http", "$log", "$timeout",
+		function($scope, $http, $log, $timeout) {
 			$scope.url = "";
 			$scope.alerts = [];
 
-			$scope.request = function (isValid) {
+			$scope.request = function(isValid) {
 				if (!isValid) {
 					return;
 				}
@@ -38,7 +38,7 @@
 						$scope.errorMessage = data.message;
 						$scope.loading = false;
 
-						$timeout(function () {
+						$timeout(function() {
 							$scope.error = false;
 						}, 10000);
 					});
