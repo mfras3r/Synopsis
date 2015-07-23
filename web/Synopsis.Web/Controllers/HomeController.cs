@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Synopsis.Library;
 using Synopsis.Library.SynopsisRequest;
 using Synopsis.Library.SynopsisRequest.Exceptions;
 using Synopsis.Web.Models;
