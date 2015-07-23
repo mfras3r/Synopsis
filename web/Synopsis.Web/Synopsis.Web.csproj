@@ -119,6 +119,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="img\spinner.gif" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
