@@ -1,0 +1,21 @@
+﻿.url-form {
+	margin-top: 10em;
+}
+
+/* Alerts */
+.alerts {
+	height: 50px;
+	padding-top: 15px;
+}
+
+/* Results Section */
+.results {
+	margin-top: 1em;
+}
+.results h3 {
+	margin-top: 0;	
+}
+.results .carousel img {
+	width: 100% !important;
+	margin: auto;
+}

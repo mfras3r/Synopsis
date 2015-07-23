@@ -123,8 +123,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="css\synopsis.css" />
     <Content Include="Global.asax" />
     <Content Include="img\spinner.gif" />
+    <Content Include="js\synopsis.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
