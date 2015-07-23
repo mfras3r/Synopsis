@@ -41,13 +41,28 @@
 
 	<section class="well results" ng-show="showResults">
 		<div class="row">
-			<div class="col-xs-6 col-sm-3 thumbnail pull-right text-center">
-				<h3 class="hidden-xs hidden-sm">Top {{words.length}} Words</h3>
-				<h3 class="visible-xs visible-sm" aria-hidden="True">Top Ten {{words.length}}</h3>
-				<ol>
-					<li ng-repeat="word in words">{{word.word}}: {{word.count}}</li>
-				</ol>
+			<div class="top-words col-xs-6 col-sm-3 thumbnail pull-right text-center">
+				<h3 ng-show="isWordsEmpty()">No words found...</h3>
+
+				<div ng-hide="isWordsEmpty()">
+					<h3 class="hidden-xs hidden-sm">Top {{words.length}} Words</h3>
+					<h3 class="visible-xs visible-sm" aria-hidden="True">Top {{words.length}}</h3>
+					<table>
+						<tr>
+							<td class="col-xs-4"><b>Rank</b></td>
+							<td class="col-xs-4"><b>Word</b></td>
+							<td class="col-xs-4"><b>Count</b></td>
+						</tr>
+						
+						<tr ng-repeat="word in words">
+							<td>{{$index + 1}}</td>
+							<td>{{word.word}}</td>
+							<td>{{word.count}}</td>
+						</tr>
+					</table>
+				</div>
 			</div>
+
 			<div class="col-xs-6 col-sm-3 thumbnail" ng-repeat="imgUrl in images">
 				<a href="{{imgUrl}}" target="_blanks">
 					<img src="{{imgUrl}}" />

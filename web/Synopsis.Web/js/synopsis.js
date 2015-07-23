@@ -13,6 +13,13 @@
 			$scope.alerts = [];
 			$scope.curAlertId = 0;
 
+			$scope.isWordsEmpty = function() {
+				if (!$scope.words || $scope.words.length === 0) {
+					return true;
+				}
+				return false;
+			}
+
 			$scope.isImagesEmpty = function() {
 				if (!$scope.images || $scope.images.length === 0) {
 					return true;
@@ -20,6 +27,7 @@
 				return false;
 			}
 
+			/* --- Alert Methods --- */
 			$scope.closeAlert = function(index) {
 				if (0 > index || index >= $scope.alerts.length) {
 					return;
@@ -43,6 +51,7 @@
 				$scope.alerts = [];
 			};
 
+			/* --- Request URL ---*/
 			$scope.request = function(isValid) {
 				if (!isValid) {
 					return;
