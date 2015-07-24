@@ -16,6 +16,21 @@
 			};
 		}
 	])
+	.directive('removeOn', [
+		function() {
+			function link(scope, elem, attrs) {
+				scope.$watch(attrs["removeOn"], function(newVal, oldVal) {
+					if (newVal) {
+						elem.remove();
+					}
+				});
+			}
+
+			return {
+				link: link
+			};
+		}
+	])
 	.controller("SynopsisController", [
 		"$scope", "$http", "$log", "$timeout",
 		function($scope, $http, $log, $timeout) {
@@ -74,6 +89,7 @@
 					msg: 'Loading... please wait.'
 				});
 
+				$scope.firstRequest = true;
 				// Reset results scope.
 				$scope.words = [];
 				$scope.images = [];

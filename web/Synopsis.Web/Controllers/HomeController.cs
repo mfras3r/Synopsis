@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Web.Mvc;
+using Synopsis.Library.CustomMVC;
 using Synopsis.Library.SynopsisRequest;
 using Synopsis.Library.SynopsisRequest.Exceptions;
 using Synopsis.Web.Models;
@@ -12,8 +13,14 @@ namespace Synopsis.Web.Controllers
 		//
 		// GET: /Home/
 
-		public ActionResult Index()
+		public ActionResult Index(string url)
 		{
+			if (!String.IsNullOrWhiteSpace(url))
+			{
+				var result = GetResult(url);
+				return View(result);
+			}
+
 			return View();
 		}
 
@@ -21,20 +28,7 @@ namespace Synopsis.Web.Controllers
 		{
 			try
 			{
-				if (!url.StartsWith("http") && !url.StartsWith("//"))
-				{
-					url = "http://" + url;
-				}
-				var uri = new Uri(url);
-				var request = new DocumentRequest<WordCount>(uri);
-
-				request.GetDocument();
-
-				var model = new PageSynopsis()
-				{
-					ImageUrls = request.GetImageUrls(),
-					TopTenWords = request.GetWordCount()
-				};
+				var model = GetResult(url);
 				return JsonContract(model);
 			}
 			catch (UriFormatException)
@@ -58,6 +52,24 @@ namespace Synopsis.Web.Controllers
 			{
 				return GetUnkonwnError(url);
 			}
+		}
+
+		private PageSynopsis GetResult(string url)
+		{
+			if (!url.StartsWith("http") && !url.StartsWith("//"))
+			{
+				url = "http://" + url;
+			}
+			var uri = new Uri(url);
+			var request = new DocumentRequest<WordCount>(uri);
+
+			request.GetDocument();
+
+			return new PageSynopsis()
+			{
+				ImageUrls = request.GetImageUrls(),
+				TopTenWords = request.GetWordCount()
+			};
 		}
 
 		#region Error Handlers
