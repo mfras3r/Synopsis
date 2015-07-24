@@ -12,14 +12,14 @@
 	<link rel="stylesheet" href="/css/synopsis.css"/>
 </head>
 <body>
-<div class="container" ng-controller="SynopsisController">
+<div class="container" ng-controller="SynopsisController" role="none presentation">
 	<section class="url-form row">
-		<div class="col-xs-12">
+		<div class="col-xs-12" role="none presentation">
 			<form name="urlForm" method="GET" action="/" ng-submit="request(urlForm.$valid, $event)">
 				<label for="url">Synopsis URL:</label>
 				<div class="input-group">
 					<input id="url" name="url" type="text" class="form-control" placeholder="URL of the web page to summarize" ng-model="url" required />
-					<div class="input-group-btn">
+					<div class="input-group-btn" role="none presentation">
 						<button type="submit" class="btn btn-default" aria-label="Search">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						</button>
@@ -29,48 +29,46 @@
 		</div>
 	</section>
 	<section class="row alerts hidden" script-visible ng-cloak>
-		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" class="text-center">
-			<span class="glyphicon glyphicon-alert" aria-hidden="true" ng-show="{{alert.type == 'danger'}}"></span>
-			<img src="/img/spinner.gif" alt="Loading..." ng-show="{{alert.loading}}" />
+		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" class="text-center" role="presentation">
+			<span class="glyphicon glyphicon-alert" ng-show="{{alert.type == 'danger'}}" aria-hidden="true"></span>
+			<img src="/img/spinner.gif" alt="Loading..." ng-show="{{alert.loading}}" aria-hidden="True" />
 			{{alert.msg}}
 		</alert>
 	</section>
-	<section ng-cloak class="well results hidden" script-visible ng-show="showResults" ng-cloak>
-		<div class="row">
-			<div class="top-words col-xs-12 col-sm-6 col-md-3 thumbnail pull-right text-center">
+	<section ng-cloak class="well results hidden row" script-visible ng-show="showResults" ng-cloak>
+			<div class="top-words col-xs-12 col-sm-6 col-md-3 thumbnail pull-right text-center" role="group">
 				<h3 ng-show="isWordsEmpty()">No words found...</h3>
 
-				<div ng-hide="isWordsEmpty()">
+				<div ng-hide="isWordsEmpty()" role="group">
 					<h3 class="hidden-xs hidden-sm">Top {{words.length}} Words</h3>
 					<h3 class="visible-xs visible-sm" aria-hidden="True">Top {{words.length}}</h3>
-					<table class="table-responsive">
-						<tr>
-							<td class="col-xs-4"><b>Rank</b></td>
-							<td class="col-xs-4"><b>Word</b></td>
-							<td class="col-xs-4"><b>Count</b></td>
+					<table class="table-responsive" role="presentation">
+						<tr role="row">
+							<td class="col-xs-4" role="columnheader"><b>Rank</b></td>
+							<td class="col-xs-4" role="columnheader"><b>Word</b></td>
+							<td class="col-xs-4" role="columnheader"><b>Count</b></td>
 						</tr>
 						
-						<tr ng-repeat="word in words">
-							<td>{{$index + 1}}</td>
-							<td>{{word.word}}</td>
-							<td>{{word.count}}</td>
+						<tr ng-repeat="word in words" role="row">
+							<td role="gridcell">{{$index + 1}}</td>
+							<td role="gridcell">{{word.word}}</td>
+							<td role="gridcell">{{word.count}}</td>
 						</tr>
 					</table>
 				</div>
 			</div>
 
-			<div class="col-xs-6 col-sm-3 thumbnail" ng-repeat="imgUrl in images">
+			<div class="col-xs-6 col-sm-3 thumbnail" ng-repeat="imgUrl in images" role="group">
 				<a href="{{imgUrl}}" target="_blanks">
-					<img src="{{imgUrl}}" />
+					<img ng-src="{{imgUrl}}" />
 				</a>
-				<div class="caption visible-lg">
+				<div class="caption visible-lg" role="presentation">
 					<a href="{{imgUrl}}" target="_blanks">{{imgUrl|thumbEllipses}}</a>
 				</div>
 			</div>
-			<div class="col-xs-12 col-sm-6 col-md-9 thumbnail text-center" ng-show="isImagesEmpty()">
+			<div class="col-xs-12 col-sm-6 col-md-9 thumbnail text-center" ng-show="isImagesEmpty()" role="none presentation">
 				<h2>No images found...</h2>
 			</div>
-		</div>
 	</section>
 </div>
 
