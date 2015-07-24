@@ -15,13 +15,10 @@
 <div class="container" ng-controller="SynopsisController">
 	<section class="url-form row">
 		<div class="col-xs-12">
-			<form name="urlForm" ng-submit="request(urlForm.$valid)">
+			<form name="urlForm" method="GET" action="/" ng-submit="request(urlForm.$valid, $event)">
 				<label for="url">Synopsis URL:</label>
 				<div class="input-group">
-					<input id="url" type="text" class="form-control" placeholder="URL of the web page to summarize" ng-model="url" required />
-					<span class="input-group-addon" ng-show="loading">
-						<img src="/img/spinner.gif" alt="Loading..."/>
-					</span>
+					<input id="url" name="url" type="text" class="form-control" placeholder="URL of the web page to summarize" ng-model="url" required />
 					<div class="input-group-btn">
 						<button type="submit" class="btn btn-default" aria-label="Search">
 							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -29,17 +26,16 @@
 					</div>
 				</div>
 			</form>
-			<div class="alerts">
-				<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" class="text-center">
-					<span class="glyphicon glyphicon-alert" aria-hidden="true" ng-show="{{alert.type == 'danger'}}"></span>
-					<img src="/img/spinner.gif" alt="Loading..." ng-show="{{alert.loading}}" />
-					{{alert.msg}}
-				</alert>
-			</div>
 		</div>
 	</section>
-
-	<section class="well results" ng-show="showResults">
+	<section class="row alerts hidden" script-visible ng-cloak>
+		<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" class="text-center">
+			<span class="glyphicon glyphicon-alert" aria-hidden="true" ng-show="{{alert.type == 'danger'}}"></span>
+			<img src="/img/spinner.gif" alt="Loading..." ng-show="{{alert.loading}}" />
+			{{alert.msg}}
+		</alert>
+	</section>
+	<section ng-cloak class="well results hidden" script-visible ng-show="showResults" ng-cloak>
 		<div class="row">
 			<div class="top-words col-xs-12 col-sm-6 col-md-3 thumbnail pull-right text-center">
 				<h3 ng-show="isWordsEmpty()">No words found...</h3>

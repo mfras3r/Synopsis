@@ -6,6 +6,16 @@
 			}
 		}
 	})
+	.directive('scriptVisible', [
+		function () {
+			function link(scope, elem) {
+				elem.toggleClass('hidden');
+			}
+			return {
+				link: link
+			};
+		}
+	])
 	.controller("SynopsisController", [
 		"$scope", "$http", "$log", "$timeout",
 		function($scope, $http, $log, $timeout) {
@@ -52,7 +62,8 @@
 			};
 
 			/* --- Request URL ---*/
-			$scope.request = function(isValid) {
+			$scope.request = function (isValid, $event) {
+				$event.preventDefault();
 				if (!isValid) {
 					return;
 				}
